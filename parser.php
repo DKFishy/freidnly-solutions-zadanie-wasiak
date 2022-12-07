@@ -14,11 +14,14 @@ function getTable(){
 	$tableHeaders = $DOM->getElementsByTagName('div');
 	$tableData = $DOM->getElementsByTagName('h3');
 	
-	
-	/*print_r ($tableHeaders);
-	echo '<br>';
-	print_r ($tableData);
-	echo '<br><br>';*/
+	/*foreach (array_combine($tableHeaders, $tableData) as $Header => $Data)
+	{ 
+		echo '<pre>'; 
+		echo preg_replace('/[[:blank:]]{3,}/', '', $Header->nodeValue); 
+		echo '</pre>';  
+	}*/
+
+    echo '<br><br>';
 	
 	foreach ($tableData as $Data)
 	{ 
@@ -27,10 +30,13 @@ function getTable(){
 		echo '</pre>'; 
 	}
 	
-	foreach ($tableData as $Data)
-	{ echo '<pre>'; print_r($Data); echo '</pre>'; }
+	/*foreach ($tableHeaders as $Header)
+	{ 
+		echo '<pre>'; 
+		echo preg_replace('/[[:blank:]]{3,}/', '', $Header->nodeValue); 
+		echo '</pre>'; 
+	}*/
 }
-
 getTable();
 ?>
 
