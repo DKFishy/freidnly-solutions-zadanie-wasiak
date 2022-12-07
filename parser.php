@@ -23,7 +23,7 @@ function getTable(){
 	foreach ($tableData as $Data)
 	{ 
 		echo '<pre>'; 
-		echo trim($Data->nodeValue); 
+		echo preg_replace('/[[:blank:]]{3,}/', '', $Data->nodeValue); 
 		echo '</pre>'; 
 	}
 	
