@@ -11,22 +11,19 @@ function getTable(){
 	$DOM->preserveWhiteSpace = false;
 	$DOM->formatOutput = true;
 	$DOM->loadHTML($tableFile);
-	$tableHeaders = $DOM->getElementsByTagName('div');
+	//$tableHeaders = $DOM->getElementsByTagName('div');
 	$tableData = $DOM->getElementsByTagName('h3');
-	
-	/*foreach (array_combine($tableHeaders, $tableData) as $Header => $Data)
-	{ 
-		echo '<pre>'; 
-		echo preg_replace('/[[:blank:]]{3,}/', '', $Header->nodeValue); 
-		echo '</pre>';  
-	}*/
-
-    echo '<br><br>';
+	$dataIndex = 0;
 	
 	foreach ($tableData as $Data)
 	{ 
+		$dataIndex++;
 		echo '<pre>'; 
-		echo preg_replace('/[[:blank:]]{3,}/', '', $Data->nodeValue); 
+		$Data->nodeValue = preg_replace('/[[:blank:]]{3,}/', '', $Data->nodeValue);
+		$Data->nodeValue = preg_replace('/(\n|\r)/', '  ', $Data->nodeValue);
+		$Data->nodeValue = preg_replace('/( ){2,}/', ' ', $Data->nodeValue);
+		$Data->nodeValue = preg_replace('/^( )/', '', $Data->nodeValue);
+		echo "[" . $dataIndex, "]" . $Data->nodeValue; 
 		echo '</pre>'; 
 	}
 	
