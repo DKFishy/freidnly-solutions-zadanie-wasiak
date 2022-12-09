@@ -1,5 +1,4 @@
 <?php
-//include_once ("wo_for_parse.html");
 
 function r_2($val){
 	echo '<pre>' ;print_r ($val); echo '</pre>';
@@ -13,19 +12,41 @@ function getTable(){
 	$DOM->loadHTML($tableFile);
 	//$tableHeaders = $DOM->getElementsByTagName('div');
 	$tableData = $DOM->getElementsByTagName('h3');
-	$dataIndex = 0;
-	
+
+	$dataIndex = 0;	
+	$dataValue = '';
+	$dataArray = array();
 	foreach ($tableData as $Data)
 	{ 
-		$dataIndex++;
 		echo '<pre>'; 
-		$Data->nodeValue = preg_replace('/[[:blank:]]{3,}/', '', $Data->nodeValue);
-		$Data->nodeValue = preg_replace('/(\n|\r)/', '  ', $Data->nodeValue);
-		$Data->nodeValue = preg_replace('/( ){2,}/', ' ', $Data->nodeValue);
-		$Data->nodeValue = preg_replace('/^( )/', '', $Data->nodeValue);
-		echo "[" . $dataIndex, "]" . $Data->nodeValue; 
+		$dataValue = $Data->nodeValue; 
+		
+		$dataValue = preg_replace('/[[:blank:]]{3,}/', '', $dataValue);
+		$dataValue = preg_replace('/(\n|\r)/', '  ', $dataValue);
+		$dataValue = preg_replace('/( ){2,}/', ' ', $dataValue);
+		$dataValue = preg_replace('/^( )/', '', $dataValue);
+		$dataValue = preg_replace('/( )$/', '', $dataValue);		
+
+		if ($dataIndex == '16'){
+			$splitAddArr = explode(' ', $dataValue); //zamiana string do array
+			foreach ($splitAddress as $SA){
+				$dataArray[$dataIndex] = $SA;
+				$dataIndex++;
+			}
+			
+		} else {
+			$dataArray[$dataIndex] = $dataValue;
+			$dataIndex++;
+		}
+		
+		
+		//echo $dataIndex . ' ' . $dataValue;
 		echo '</pre>'; 
+		/*$dataArray[$dataIndex] = $dataValue;
+		$dataIndex++;*/
 	}
+	echo '<pre>'; print_r($dataArray); echo '</pre>';
+	$unset($dataIndex);
 	
 	/*foreach ($tableHeaders as $Header)
 	{ 
