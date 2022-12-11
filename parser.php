@@ -9,7 +9,6 @@ function getTable(){
 	$DOM->preserveWhiteSpace = false;
 	$DOM->formatOutput = true;
 	$DOM->loadHTML($tableFile);
-	//$tableHeaders = $DOM->getElementsByTagName('div');
 	$tableData = $DOM->getElementsByTagName('h3');
 
 	$dataIndex = 0;	
@@ -58,7 +57,6 @@ function getTable(){
 	foreach ($indexArr as $index){
 		array_push($csvArray, $dataArray[$index]);
 	}
-	//echo '<pre>'; print_r($csvArray); echo '</pre>';
 	$csvHeaders = array( 'Customer', 'Trade', 'Date' , 'NTE (USD)', 'PO', 'Tracking No', 'Store ID', 'Street', 'State', 'Zip code', 'Phone');
 	$csvFile = fopen('parsed.csv', 'w');
 	
