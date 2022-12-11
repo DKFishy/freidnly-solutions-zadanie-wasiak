@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env'               => env('APP_ENV', 'production'),
+    'env'               => env('APP_ENV', 'local'),
 
     // slugged client name e.g. clm, rgl, etc.
     'crm_user'          => 'default',
