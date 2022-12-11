@@ -1,8 +1,7 @@
 <?php
 
-function r_2($val){
-	echo '<pre>' ;print_r ($val); echo '</pre>';
-}
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 
 function getTable(){
 	$tableFile = file_get_contents('wo_for_parse.html');
@@ -26,7 +25,7 @@ function getTable(){
 		$dataValue = preg_replace('/^( )/', '', $dataValue);
 		$dataValue = preg_replace('/( )$/', '', $dataValue);		
 
-		if ($dataIndex == '16'){
+		if ($dataIndex == 16){
 			$strToArr = explode(' ', $dataValue); //zamiana wartości komórki tabeli z string do array
 			$splitAddress = array_slice($strToArr, 0, 3);
 			$splitAddress = implode(' ', $splitAddress);
@@ -54,20 +53,21 @@ function getTable(){
 			$dataIndex++;
 		}
 	}
-	$finalArr = array();
+	$csvArray = array();
 	$indexArr = array(0, 2, 3, 5, 10, 11, 14, 16, 17, 18, 19);
 	foreach ($indexArr as $index){
-		array_push($finalArr, $dataArray[$index]);
+		array_push($csvArray, $dataArray[$index]);
 	}
-	echo '<pre>'; print_r($finalArr); echo '</pre>';
-	$unset($dataIndex);
+	//echo '<pre>'; print_r($csvArray); echo '</pre>';
+	$csvHeaders = array( 'Customer', 'Trade', 'Date' , 'NTE (USD)', 'PO', 'Tracking No', 'Store ID', 'Street', 'State', 'Zip code', 'Phone');
+	$csvFile = fopen('parsed.csv', 'w');
 	
-	/*foreach ($tableHeaders as $Header)
-	{ 
-		echo '<pre>'; 
-		echo preg_replace('/[[:blank:]]{3,}/', '', $Header->nodeValue); 
-		echo '</pre>'; 
-	}*/
+	fputcsv($csvFile, $csvHeaders, ",");
+	fputcsv($csvFile, $csvArray, ",");
+	fclose($csvFile);
+	
+	unset($dataIndex);
+	
 }
 getTable();
 ?>
