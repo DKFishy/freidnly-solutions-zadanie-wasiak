@@ -41,7 +41,8 @@
         "dragonmantank/cron-expression": "^3.1",
         "laravel/legacy-factories": "^1.1",
         "fruitcake/laravel-cors": "^2.0",
-        "tigitz/php-spellchecker": "^0.2.1"
+        "tigitz/php-spellchecker": "^0.2.1",
+        "laravel/sail": "^1.16"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.2",
@@ -51,8 +52,7 @@
         "nunomaduro/collision": "^5.0",
         "beyondcode/laravel-dump-server": "^1.7",
         "fakerphp/faker": "^1.9.1",
-        "barryvdh/laravel-ide-helper": "^2.10",
-        "laravel/sail": "^1.16"
+        "barryvdh/laravel-ide-helper": "^2.10"
     },
     "autoload": {
         "classmap": [
