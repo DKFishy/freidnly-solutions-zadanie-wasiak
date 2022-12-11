@@ -51,7 +51,8 @@
         "nunomaduro/collision": "^5.0",
         "beyondcode/laravel-dump-server": "^1.7",
         "fakerphp/faker": "^1.9.1",
-        "barryvdh/laravel-ide-helper": "^2.10"
+        "barryvdh/laravel-ide-helper": "^2.10",
+        "laravel/sail": "^1.16"
     },
     "autoload": {
         "classmap": [
